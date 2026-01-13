@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Complaint_Hostel_system.Models.Complaint>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";   // Landing page should not show the sidebar layout
+    ViewBag.Title = "Welcome";
+}
+
+<h2 class="text-center"> All Complaints </h2>
+
+
+<table class="table table-bordered table-striped" style="width:100%;">
+    <thead class="table-dark">
+        <tr>
+            <th>Complaint Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>User Id</th>
+            <th>Action</th>  <!-- NEW column for editing -->
+        </tr>
+    </thead>
+
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.ComplaintId</td>
+            <td>@c.Title</td>
+            <td>@c.Description</td>
+            <td>@c.Status</td>
+            <td>@c.CreatedAt</td>
+            <td>@c.UserId</td>
+
+            <!-- Inline dropdown for updating -->
+            <td>
+
+                <form action="/Admin/UpdateStatus" method="post">
+                    <input type="hidden" name="complaintId" value="@c.ComplaintId" />
+
+                    <select name="status" class="form-control form-control-sm">
+                        <option value="Pending" @(c.Status == "Pending" ? "selected" : "")>Pending</option>
+                        <option value="In Progress" @(c.Status == "In Progress" ? "selected" : "")>In Progress</option>
+                        <option value="Resolved" @(c.Status == "Resolved" ? "selected" : "")>Resolved</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-sm btn-primary mt-1">Update</button>
+                    @*<p>Debug -> ComplaintId: @c.ComplaintId | Status: @c.Status</p>*@
+                </form>
+            </td>
+
+        </tr>
+    }
+</table>
+
+

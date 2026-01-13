@@ -1,0 +1,38 @@
+﻿@model Complaint_Hostel_system.Models.Complaint
+@{
+    ViewBag.Title = "File Complaint";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow p-4">
+                <h2 class="mb-4 text-centre" style="text-align:center;">File a Complaint</h2>
+
+
+            @using (Html.BeginForm("Create", "Complaint", FormMethod.Post))
+            {
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Enter complaint title" })
+                </div>
+
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4, placeholder = "Describe your complaint in detail" })
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            }
+
+            @if (ViewBag.Message != null)
+            {
+                <p style="color:green; text-align:center; margin-top:15px;">@ViewBag.Message</p>
+            }
+            </div>
+        </div>
+        </div>
+    </div>
+}
+

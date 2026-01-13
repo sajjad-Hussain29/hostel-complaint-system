@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title - Hostel Complaint Management</title>
+
+    <!-- Only the essentials -->
+    @*<link href="~/Content/site.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-p1Cm2fX7d4dY8Z4bK/7qN6yX+gJYJ7x2b6xJ5s5rZ6G2JkqC1Q7r7v0uQ6sI7h5c9M9Kq1Mk1J9/0Z1b2x5Xg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />*@
+
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+       integrity="sha512-+...your-hash..."
+       crossorigin="anonymous"
+       referrerpolicy="no-referrer"/>
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    @RenderBody()
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

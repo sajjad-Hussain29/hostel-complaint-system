@@ -1,0 +1,231 @@
+﻿
+
+@model Complaint_Hostel_system.Models.AdminModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "AdminLogin";
+}
+
+<div class="login-wrapper">
+    <div class="login-bg">
+        <img src="~/Content/images/login-ui-pic.png" alt="Login Background" />
+        <div class="login-content">
+            <!-- Left: welcome note -->
+            <div class="welcome">
+                <h1>WELCOME BACK ADMIN</h1>
+                <p>Sign in to access your dashboard.</p>
+            </div>
+
+            <!-- Right: login form -->
+            <div class="login-card">
+                <h2>Admin Login</h2>
+
+                @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(m => m.AdminEmail, new { @class = "form-control", placeholder = "Enter Email" })
+                        @Html.ValidationMessageFor(m => m.AdminEmail, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group password-wrapper">
+
+                        @Html.PasswordFor(m => m.Admin_PasswordHash, new { @class = "form-control", placeholder = "Enter Password", id = "Password" })
+                        <button type="button" id="togglePassword" class="toggle-password" aria-label="Show password">
+                            <i class="fa-solid fa-eye fa-sm"></i>
+                        </button>
+                        @Html.ValidationMessageFor(m => m.Admin_PasswordHash, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button type="submit" class="btn btn-primary login-btn">Login</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+        function togglePassword() {
+            const pwd = document.getElementById("Password");
+            pwd.type = pwd.type === "password" ? "text" : "password";
+        }
+        document.getElementById("togglePassword").addEventListener("click", togglePassword);
+</script>
+
+
+<style>
+    body {
+        background: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .login-bg {
+        position: relative;
+        width: 900px;
+        height: 500px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+        .login-bg img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .login-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        height: 100%;
+        padding: 40px;
+        color: #fff;
+    }
+
+    .welcome {
+        flex: 1;
+        padding-right: 30px;
+        padding-left: 40px;
+        padding-top: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+        .welcome h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .welcome p {
+            font-size: 1.1rem;
+        }
+
+    .login-card {
+        width: 280px;
+        flex: 1;
+        background: #fff;
+        color: #333;
+        padding: 20px 25px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        position: absolute;
+        right: 70px;
+        top: 40%;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+
+        .login-card h2 {
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .password-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 40px;
+        }
+
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #007bff;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+        .login-btn:hover {
+            background: #0056b3;
+        }
+
+    .btn-link {
+        text-decoration: underline;
+        color: #007bff;
+    }
+
+        .btn-link:hover {
+            color: #0056b3;
+        }
+
+    @@media (max-width: 768px) {
+        .login-bg {
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+        }
+
+        .login-content {
+            flex-direction: column;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .welcome {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .login-card {
+            width: 100%;
+        }
+    }
+</style>

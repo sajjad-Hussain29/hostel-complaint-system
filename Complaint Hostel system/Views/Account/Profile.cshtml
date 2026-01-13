@@ -1,0 +1,36 @@
+﻿@model Complaint_Hostel_system.Models.User
+@{
+    ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Profile</h2>
+
+@using (Html.BeginForm("Profile", "Account", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.UserId) <!-- hidden for update -->
+
+    <div class="form-group">
+        <label>User ID</label>
+        <input type="text" class="form-control" value="@Model.UserId" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Name</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Room Number</label>
+        @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control" })
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+}
+

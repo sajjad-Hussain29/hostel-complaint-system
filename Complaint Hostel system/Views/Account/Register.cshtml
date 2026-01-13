@@ -1,0 +1,388 @@
+﻿@*@model Complaint_Hostel_system.Models.RegisterModel
+
+    @{
+        Layout = null;
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Register</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                padding: 30px;
+            }
+
+            .form-container {
+                background: #fff;
+                padding: 25px;
+                border-radius: 6px;
+                width: 400px;
+                margin: auto;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            input[type=text], input[type=email], input[type=password] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            button[type="submit"]{
+                background: #007bff;
+                color: white;
+                padding: 10px;
+                border: none;
+                border-radius: 4px;
+                width: 100%;
+                cursor: pointer;
+            }
+
+                button:hover {
+                    background: #0056b3;
+                }
+
+            .password-wrapper {
+                display: flex;
+                align-items: center;
+                position: relative;
+            }
+
+
+                .password-wrapper input {
+                    flex: 1;
+                    padding-right: 40px;
+                }
+
+            .toggle-password {
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                margin-left: -35px;
+                font-size: 1.1rem;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="form-container">
+            <h2>User Registration</h2>
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <label>Name</label>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter your name" })
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "Enter your email" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    <div class="password-wrapper">
+                        @Html.PasswordFor(m => m.Password,
+                            new { @class = "form-control", placeholder = "Enter Password", id = "Password" })
+
+                        <button type="button"
+                                id="togglePassword"
+                                class="toggle-password"
+                                aria-label="Show password">
+                            <i class="fa-solid fa-eye fa-sm"></i>
+                        </button>
+                    </div>
+
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Room No</label>
+                    @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Enter room number" })
+                </div>
+
+                <button type="submit">Register</button>
+            }
+        </div>
+
+        <script>
+    function togglePassword() {
+        const input = document.getElementById('Password');
+        input.type = input.type === 'password' ? 'text' : 'password';
+    }
+    document.getElementById('togglePassword').addEventListener('click', togglePassword);
+        </script>
+
+    </body>
+    </html>*@
+
+@model Complaint_Hostel_system.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Register";
+}
+
+<div class="login-wrapper">
+    <div class="login-bg">
+        <img src="~/Content/images/login-ui-pic.png" alt="Login Background" />
+        <div class="login-content">
+            <!-- Left: welcome note -->
+            <div class="welcome">
+                <h1 class="welcome-title">WELCOME TO  </h1>
+                <h1 class="welcome-system">HOSTEL COMPLAINT SYSTEM</h1>
+                <p>Create account to access your dashboard.</p>
+            </div>
+
+            <!-- Right: login form -->
+            <div class="login-card">
+                <h2>Register</h2>
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter Name" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                @Html.TextBoxFor(m => m.RoomNo, new { @class = "form-control", placeholder = "Enter Room Number" })
+                @Html.ValidationMessageFor(m => m.RoomNo, "", new { @class = "text-danger" })
+            </div>
+
+                    <div class="form-group password-wrapper">
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter Password", id = "Password" })
+                        <button type="button" id="togglePassword" class="toggle-password" aria-label="Show password">
+                            <i class="fa-solid fa-eye fa-sm"></i>
+                        </button>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button type="submit" class="btn btn-primary login-btn">Register</button>
+                 }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function togglePassword() {
+        const pwd = document.getElementById("Password");
+        pwd.type = pwd.type === "password" ? "text" : "password";
+    }
+    document.getElementById("togglePassword").addEventListener("click", togglePassword);
+</script>
+
+
+<style>
+    body {
+        background: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .login-bg {
+        position: relative;
+        width: 900px;
+        height: 500px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+        .login-bg img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .login-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        height: 100%;
+        padding: 40px;
+        color: #fff;
+    }
+
+    .welcome {
+        flex: 1;
+       
+        padding-top: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+       /* align-items: flex-start;*/
+    }
+
+    .welcome-title {
+        padding-right: 30px;
+        padding-left: 40px;
+        font-size: 2rem;
+        margin-bottom: 8px;
+        margin-left: 50px;
+        font-weight: 600;
+    }
+
+    .welcome-system {
+        width: 100%;
+        text-align: left;
+        font-size: 2rem;
+        margin-left: 0;
+        font-weight: 600;
+        margin: 0;
+    }
+
+
+
+    .welcome p {
+        font-size: 1.1rem;
+        margin-left: 35px;
+    }
+
+    .login-card {
+        width: 280px;
+        flex: 1;
+        background: #fff;
+        color: #333;
+        padding: 20px 25px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        position: absolute;
+        right: 55px;
+        top: 40%;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+
+        .login-card h2 {
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .password-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 40px;
+        }
+
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #007bff;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+        .login-btn:hover {
+            background: #0056b3;
+        }
+
+    .btn-link {
+        text-decoration: underline;
+        color: #007bff;
+    }
+
+        .btn-link:hover {
+            color: #0056b3;
+        }
+
+    @@media (max-width: 768px) {
+        .login-bg {
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+        }
+
+        .login-content {
+            flex-direction: column;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .welcome {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .login-card {
+            width: 100%;
+        }
+    }
+</style>

@@ -1,0 +1,11 @@
+﻿@*
+    Views/Account/InvalidOrExpiredToken.cshtml
+*@
+@{
+    ViewBag.Title = "Link expired";
+}
+<h2>Invalid or Expired Token</h2>
+<p>
+    The password-reset link you used is either invalid or has expired.
+    Please request a new one from the <a href="@Url.Action("ForgotPassword","Account")">Forgot Password</a> page.
+</p>

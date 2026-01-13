@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/IndexLandingPage.cshtml";   
+    ViewBag.Title = "Welcome";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .hero {
+            background: url('@Url.Content("~/Content/Images/Homepage.png")') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .hero-content{
+            padding-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+            .hero h1 {
+                font-size: 3rem;
+                font-weight: 700;
+                text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+                text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            }
+
+            .hero .btn {
+                margin-top: 20px;
+                padding: 12px 30px;
+                font-size: 1.2rem;
+            }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>HOSTEL COMPLAINT MANAGEMENT</h1>
+            <h3>A step towards a safer and comfortable hostel stay.</h3>
+
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="@Url.Action("Login","Account")" class="btn btn-success btn-lg ">User</a>
+                <a href="@Url.Action("AdminLogin","Admin")" class="btn btn-primary btn-sm ">Admin</a>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
