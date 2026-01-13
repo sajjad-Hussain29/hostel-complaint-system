@@ -65,3 +65,13 @@ Iam still working on improving the project. Some features I plan to add are:
 - Allowing residents to upload pictures regarding the complaint
 - Exploring basic automation features for complaint handling
 
+----------------------------------------------------------------------------------------------------------------------
+
+# Screenshots(reference)
+
+- Homepage: screenshots/homepage.png
+- Complaints:  screenshots/mycomplaints.png
+- Filing a new complaint:  screenshots/newcomplaint.png
+
+
+
